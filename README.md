@@ -11,7 +11,7 @@ Any contribution is well appreciated :)
 
 ## Authors
 
-* **Mirko Bez** - *Initial work* - [PurpleBooth](https://github.com/herrBez)
+* **Mirko Bez** - *Initial work* - [herrBez](https://github.com/herrBez)
 
 ## License
 

@@ -15,7 +15,7 @@ Any contribution is well appreciated :)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the BSD 3-clause License - see the [LICENSE](LICENSE) file for details
 
 
 

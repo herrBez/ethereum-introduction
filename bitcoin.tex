@@ -1,0 +1,83 @@
+
+%% Bitcoin
+\begin{frame}{Bitcoin~\cite{nakamoto2008bitcoin}}
+    \begin{itemize}
+        \item P2P payment system
+        \item Effectively, a \textbf{State Transition System} ($\sigma \xrightarrow{T} \sigma'$)
+        \item The State is the balance of the
+        addresses (UTXO list)
+            \begin{itemize}
+            \item Addresses are public keys, the users keep the private key secret
+            \end{itemize}
+        % \item A transaction may contain more than one input and more than one output addresses
+        \item The transactions are collected in blocks
+		$$
+        \sigma_{0} \xrightarrow{B} \sigma_n \equiv 
+        \sigma_{0} \xrightarrow{T_1} \sigma_1 \xrightarrow{T_2} \cdots
+        \sigma_{n-1} \xrightarrow{T_n} \sigma_{n}
+        $$
+        \item The blocks are chained, thus forming a Blockchain 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Bitcoin~\cite{nakamoto2008bitcoin}}
+\begin{itemize}
+	\item Nodes execute client program
+	\item Peers are organized in a structured overlay network
+	\item Transactions and new blocks are spread using gossip protocols
+    \item Each peer maintains \emph{locally}:
+    \begin{itemize} 
+    \item a copy of the \emph{entire} Blockchain
+	\item and State
+    \end{itemize}
+    
+    \item The peers should:
+    \begin{itemize}
+    	\item Accept only valid blocks
+        \item Check that each transaction of the block is valid
+    	\item Each peer updates \textbf{its own} State according to the transactions
+        %\item Each peer is aware of the whole transaction history  $\implies$ 
+        %avoid double spending problem
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Bitcoin~\cite{nakamoto2008bitcoin}}
+\begin{block}{Script}
+    \begin{itemize}
+    \item Stack-based \textbf{Turing-incomplete} Language used to express the 
+    condition that should be full-filled to spend money
+    \item UTXO have locking script: it specifies the conditions that must be met to send the output in the future:
+    \item Unlocking script solves a locking script, part of every tx input
+    \item Validator executes locking and unlocking script together
+    \item Stateless
+    \end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{Bitcoin~\cite{nakamoto2008bitcoin} - Consensus}
+
+\begin{block}{Consensus}
+  \begin{itemize}
+  \item Avoid rewriting of history (Sybil Attacks) Proof-of-Work (PoW):
+  \begin{itemize}
+  \item Find a nonce such that the hash of the block contains a certain
+  amount of leading zeros
+  \end{itemize}
+  \item \textbf{Selection Rule}: Longest chain rule
+  \end{itemize}
+\end{block}
+
+\begin{block}{Miners}
+\begin{itemize}
+\item Miners form the blocks, thus they decide which
+      transactions are included and in which \textbf{order}
+\item They should mine valid blocks (e.g. balances cannot go under zero)
+\item They receives a reward
+\end{itemize}
+\end{block}
+
+\end{frame}

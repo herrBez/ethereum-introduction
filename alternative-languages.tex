@@ -1,0 +1,81 @@
+\begin{frame}[fragile]{Solidity}
+\begin{itemize}
+\item High-level \emph{contract-oriented} language 
+\item Statically typed
+\item Primitives to access block data, msg call data, tx data %\item
+\item abstraction for functions:
+\begin{itemize}
+\item \texttt{external/internal/private/public}
+\item \texttt{view/pure/payable}
+\item Modifiers
+\end{itemize}
+\item Contract interfaces, inheritance, abstract contracts, libraries
+\item Support for inline assembly
+\item Expressivity leads to potential vulnerabilities
+\item First formalization attempts with \href{https://github.com/kframework/solidity-semantics}{$\mathbb{K}$-Framework}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Solidity Example}
+\begin{lstlisting}[frame=single, language=Solidity]
+pragma solidity ^0.4.24;
+contract Example {
+    uint8 public x; 
+    address private owner;
+    
+    constructor() public { x = 0; owner = msg.sender; }
+    
+    event XHasChanged(uint8 oldValue, uint8 newValue);
+    
+    modifier onlyOwner() {
+    	// Pre-conditions
+        require(msg.sender == owner);
+        _; //Placeholder for the body of the function
+        // Put additional post-conditions here
+    }
+    
+    function modifyX(uint8 newValue) 
+    public onlyOwner returns (uint8 oldValue) {
+        oldValue = x;
+        x = newValue;
+        emit XHasChanged(oldValue, newValue);
+    }
+}
+
+
+\end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}{Vyper~\cite{bib:vyper-docs}}
+
+  \begin{itemize}
+  	\item \textbf{Aim:} Write secure, human-readable  contracts:
+  	\begin{itemize}
+  		\item It gives up: modifiers, inheritance, inline assembly, function overloading, recursive calls, Infinite-length loops
+  	\end{itemize}
+    \item predictable gas consumption
+    \item Resembles python
+  	\item \href{https://github.com/kframework/vyper-semantics/}{Formalization in $\mathbb{K}$-Framework}
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{EVM Alternative Languages}
+\begin{block}{Bamboo~\cite{bamboo}}
+\begin{itemize}
+\item Polymorphic contracts: According to the stages, a contract changes its signature
+\item Do not support loops
+\end{itemize}
+\end{block}
+
+\begin{block}{Obsidian~\cite{obsidian}}
+  \begin{itemize}
+  \item State as first class citizen
+  \item The methods that can be invoked on an object depend on the object’s current state.
+  \end{itemize}
+\end{block}
+\end{frame}
+

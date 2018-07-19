@@ -1,4 +1,4 @@
-# Ethereum Presentation
+# Ethereum Introduction
 
 The aim of this presentation is to introduce Ethereum to computer scientists
 that are not familiar with blockchain.

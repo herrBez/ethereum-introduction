@@ -1,27 +1,29 @@
 \begin{frame}{Ethereum - Overview~\cite{bib:yellow}}
-\begin{itemize}
-\item Generalization of Bitcoin
-\item Support execution of \emph{quasi-}Turing Complete smart contracts
-\begin{itemize}
-\item Avoid abuse of network resources
-\item Each operation/opcode is associated with
-an amount of gas % $\implies$ termination guaranteed
-\item Gas price is determined per-transaction
-\end{itemize}
-\end{itemize}
+    \begin{itemize}
+        \item Generalization of Bitcoin
+        \item Support execution of \emph{quasi-}Turing Complete smart contracts
+        \begin{itemize}
+            \item Avoid abuse of network resources
+            \item Each operation/opcode is associated with
+            an amount of gas % $\implies$ termination guaranteed
+            \item Gas price is determined per-transaction
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %% Ethereum Intro
 \begin{frame}{Ethereum - World State~\cite{bib:yellow}}
-	 Save the (World/Global) State ($\sigma$) explicitly
-     \begin{itemize}
+    \begin{itemize}
+    \item Save the world State ($\sigma$) explicitly
+    \begin{itemize}
      \item Partial function from Addresses to Account States
      \item Externally owned account vs Contract Account
-    \end{itemize}	
-	 
+    \end{itemize}
+    \end{itemize}
+
     \begin{figure}
         \begin{center}
-            \includegraphics[width=0.91\textwidth]{./img/world-state}
+            \includegraphics[width=0.92\textwidth]{./img/world-state}
         \end{center}
     \end{figure}
 \end{frame}
@@ -35,7 +37,7 @@ an amount of gas % $\implies$ termination guaranteed
 %    \end{itemize}
 %\end{itemize}
 \begin{center}
-\includegraphics[height=0.95\textheight]{./img/transaction-execution}
+\includegraphics[height=0.85\textheight]{./img/transaction-execution}
 \end{center}
 \end{frame}
 

@@ -1,20 +1,27 @@
 \begin{frame}[fragile]{Solidity}
-\begin{itemize}
-\item High-level \emph{contract-oriented} language 
-\item Statically typed
-\item Primitives to access block data, msg call data, tx data %\item
-\item abstraction for functions:
-\begin{itemize}
-\item \texttt{external/internal/private/public}
-\item \texttt{view/pure/payable}
-\item Modifiers
-\end{itemize}
-\item Contract interfaces, inheritance, abstract contracts, libraries
-\item Support for inline assembly
-\item Expressivity leads to potential vulnerabilities
-\item First formalization attempts with \href{https://github.com/kframework/solidity-semantics}{$\mathbb{K}$-Framework}
-\end{itemize}
+    \begin{itemize}
+        \item \emph{Contract-oriented}
+        \item Statically typed
+        \item Primitives to access environment data %\item
+        \item Contract interfaces, inheritance, abstract contracts, libraries
+        \item Support for inline assembly
+        \item Expressivity leads to potential vulnerabilities
+        \item First formalization attempts with \href{https://github.com/kframework/solidity-semantics}{$\mathbb{K}$-Framework}
+    \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]{Solidity - Functions}
+        \begin{itemize}
+        \item Function Selector \\
+        \lstinline!bytes4(keccak256("foo(uint8,uint16)"))!
+        \item Fallback Function \\
+        \lstinline!function () public { }!
+        \item \texttt{external/internal/private/public}
+        \item \texttt{view/pure/payable}
+        \item Modifiers
+        \end{itemize}
+\end{frame}
+
 
 \begin{frame}[fragile]{Solidity Example}
 \begin{lstlisting}[frame=single, language=Solidity]
@@ -28,10 +35,8 @@ contract Example {
     event XHasChanged(uint8 oldValue, uint8 newValue);
     
     modifier onlyOwner() {
-    	// Pre-conditions
         require(msg.sender == owner);
         _; //Placeholder for the body of the function
-        // Put additional post-conditions here
     }
     
     function modifyX(uint8 newValue) 
@@ -41,7 +46,6 @@ contract Example {
         emit XHasChanged(oldValue, newValue);
     }
 }
-
 
 \end{lstlisting}
 

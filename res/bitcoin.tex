@@ -11,7 +11,7 @@
             \end{itemize}
         % \item A transaction may contain more than one input and more than one output addresses
         \item The transactions are collected in blocks
-		$$
+        $$
         \sigma_{0} \xrightarrow{B} \sigma_n \equiv 
         \sigma_{0} \xrightarrow{T_1} \sigma_1 \xrightarrow{T_2} \cdots
         \sigma_{n-1} \xrightarrow{T_n} \sigma_{n}
@@ -22,20 +22,20 @@
 
 \begin{frame}{Bitcoin~\cite{nakamoto2008bitcoin}}
 \begin{itemize}
-	\item Nodes execute client program
-	\item Peers are organized in a structured overlay network
-	\item Transactions and new blocks are spread using gossip protocols
+    \item Nodes execute client program (C++, Go, \dots)
+    \item Structured overlay network
+    \item Transactions and new blocks spread using \textbf{gossip protocols}
     \item Each peer maintains \emph{locally}:
     \begin{itemize} 
-    \item a copy of the \emph{entire} Blockchain
-	\item and State
+        \item a copy of the \emph{entire} \textbf{Blockchain}
+        \item a copy of the \emph{entire} \textbf{State}
     \end{itemize}
     
-    \item The peers should:
+    \item Each peers should:
     \begin{itemize}
-    	\item Accept only valid blocks
-        \item Check that each transaction of the block is valid
-    	\item Each peer updates \textbf{its own} State according to the transactions
+        \item Accept only valid blocks with valid transactions
+        %~ \item Check the validity that each transaction of the block is valid
+        \item Update \textbf{its own} State according to the transactions
         %\item Each peer is aware of the whole transaction history  $\implies$ 
         %avoid double spending problem
     \end{itemize}
@@ -44,17 +44,31 @@
 \end{frame}
 
 
+
 \begin{frame}{Bitcoin~\cite{nakamoto2008bitcoin}}
 \begin{block}{Script}
     \begin{itemize}
-    \item Stack-based \textbf{Turing-incomplete} Language used to express the 
-    condition that should be full-filled to spend money
-    \item UTXO have locking script: it specifies the conditions that must be met to send the output in the future:
-    \item Unlocking script solves a locking script, part of every tx input
-    \item Validator executes locking and unlocking script together
+    \item Stack-based \textbf{Turing-incomplete} Language
+    % \item Expresses conditions that should be full-filled to spend money
+    \item UTXO have locking script
+    \item Transaction input have unlocking script
+    %\item Unlocking script solves a locking script, part of every tx input
+    %it specifies the conditions that must be met to spend the output in the future:
+    %\item Unlocking script solves a locking script, part of every tx input
+    \item Validator/Miner executes locking and unlocking script together
     \item Stateless
     \end{itemize}
-	\end{block}
+    \end{block}
+    
+    \begin{center}
+    \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto] 
+    \node[state,initial] (q_0)   {$q_0$}; 
+    \node[state,accepting] (q_1) [right=of q_0]{$q_1$}; 
+        \path[->] 
+        (q_0) edge [loop above] node {a} ()
+              edge node {b} (q_1);
+    \end{tikzpicture}
+    \end{center}
 \end{frame}
 
 
@@ -62,21 +76,21 @@
 
 \begin{block}{Consensus}
   \begin{itemize}
-  \item Avoid rewriting of history (Sybil Attacks) Proof-of-Work (PoW):
-  \begin{itemize}
-  \item Find a nonce such that the hash of the block contains a certain
-  amount of leading zeros
-  \end{itemize}
+  \item Avoid rewriting of history (Sybil Att.) Proof-of-Work (PoW)
+  %~ \begin{itemize}
+  %~ \item Find a nonce such that the hash of the block contains a certain
+  %~ amount of leading zeros
+  %~ \end{itemize}
   \item \textbf{Selection Rule}: Longest chain rule
   \end{itemize}
 \end{block}
 
 \begin{block}{Miners}
 \begin{itemize}
-\item Miners form the blocks, thus they decide which
-      transactions are included and in which \textbf{order}
-\item They should mine valid blocks (e.g. balances cannot go under zero)
-\item They receives a reward
+\item Miners form the blocks
+\item They decide which transactions are included and their \textbf{order}
+\item They should mine valid blocks (e.g. balances always $\geq 0$)
+\item They receive a reward
 \end{itemize}
 \end{block}
 
